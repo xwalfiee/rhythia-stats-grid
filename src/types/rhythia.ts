@@ -30,7 +30,6 @@ export interface NormalizedRhythiaStats {
 	readonly displayName: string;
 	readonly avatarUrl: string;
 
-	readonly user_bio: string;
 	readonly user_title: string;
 	readonly user_title_image: string;
 	readonly user_rhythm_points: number;

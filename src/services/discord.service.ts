@@ -23,7 +23,6 @@ export async function syncUserDiscordWidget(
 			name: "user_next_title_points_needed",
 			value: stats.user_next_title_points_needed,
 		},
-		{ type: 1, name: "user_bio", value: stats.user_bio },
 		{
 			type: 2,
 			name: "user_rhythm_points",
@@ -63,7 +62,6 @@ export async function syncUserDiscordWidget(
 				username: stats.username,
 				display_name: stats.displayName,
 				avatar: stats.avatarUrl,
-				bio: stats.user_bio,
 				rhythm_points: stats.user_rhythm_points,
 				user_title: stats.user_title,
 				user_title_image: stats.user_title_image,
