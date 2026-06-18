@@ -78,7 +78,7 @@ export async function fetchProfileStatistics(
 		return {
 			username: user.username ?? `user${user.id}`,
 			displayName: user.username ?? `user${user.id}`,
-			avatarUrl: user.profile_image ?? user.avatar_url ?? "",
+			avatarUrl: user.avatar_url ?? "",
 
 			user_bio: user.about_me || "No bio",
 

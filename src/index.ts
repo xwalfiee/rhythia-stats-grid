@@ -22,6 +22,17 @@ async function initialize(env: unknown): Promise<void> {
 }
 
 export default {
+	async fetch(
+		_request: Request,
+		_env: unknown,
+		_ctx: ExecutionContext,
+	): Promise<Response> {
+		return new Response("Rhythia Sync Worker Active", {
+			status: 200,
+			headers: { "Content-Type": "text/plain" },
+		});
+	},
+
 	async scheduled(
 		_event: ScheduledController,
 		env: unknown,
