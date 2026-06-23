@@ -17,7 +17,11 @@ export async function syncUserDiscordWidget(
 			value: { url: stats.user_title_image },
 		},
 		{ type: 1, name: "user_title", value: stats.user_title },
-		{ type: 2, name: "user_rhythm_points", value: stats.user_rhythm_points },
+		{
+			type: 1,
+			name: "user_rhythm_points",
+			value: String(stats.user_rhythm_points),
+		},
 		{ type: 1, name: "user_rank", value: stats.user_rank },
 		{ type: 1, name: "user_country_rank", value: stats.user_country_rank },
 		{ type: 2, name: "user_play_count", value: stats.user_play_count },
