@@ -1,7 +1,4 @@
-import type {
-	ExecutionContext,
-	ScheduledController,
-} from "@cloudflare/workers-types";
+import type { ExecutionContext } from "@cloudflare/workers-types";
 import { loadAndValidateConfig } from "./config";
 import { syncUserDiscordWidget } from "./services/discord.service";
 import { fetchProfileStatistics } from "./services/rhythia.service";
@@ -24,20 +21,13 @@ async function initialize(env: unknown): Promise<void> {
 export default {
 	async fetch(
 		_request: Request,
-		_env: unknown,
-		_ctx: ExecutionContext,
+		env: unknown,
+		ctx: ExecutionContext,
 	): Promise<Response> {
+		ctx.waitUntil(initialize(env));
 		return new Response("Rhythia Sync Worker Active", {
 			status: 200,
 			headers: { "Content-Type": "text/plain" },
 		});
-	},
-
-	async scheduled(
-		_event: ScheduledController,
-		env: unknown,
-		ctx: ExecutionContext,
-	): Promise<void> {
-		ctx.waitUntil(initialize(env));
 	},
 };
