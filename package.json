@@ -1,5 +1,5 @@
 {
-	"name": "rhythia-stats",
+	"name": "rhythia-stats-grid",
 	"version": "0.1.0",
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.15",

@@ -3,7 +3,6 @@ import type { EnvironmentConfig } from "../config";
 import type {
 	NormalizedRhythiaStats,
 	RhythiaProfileResponse,
-	RhythiaUserScoresResponse,
 } from "../types/rhythia";
 
 function calculateTitleProgress(
@@ -55,56 +54,32 @@ export async function fetchProfileStatistics(
 		const rpValue = user.skill_points ?? 0;
 		const rankValue = user.position ?? 0;
 
-		const { title: userTitle, cap: nextTitlePointsNeeded } =
-			calculateTitleProgress(rankValue, rpValue);
+		const { title: userTitle } = calculateTitleProgress(rankValue, rpValue);
 
 		const fileName = userTitle.toLowerCase().replace(/ /g, "_");
 		const githubBaseUrl =
-			"https://raw.githubusercontent.com/xwalfiee/rhythia-stats/refs/heads/main/assets";
+			"https://raw.githubusercontent.com/xwalfiee/rhythia-stats-grid/refs/heads/main/assets";
 		const badgeUrl = `${githubBaseUrl}/titles/${fileName}.png`;
-
-		// top play
-		const scoresRes = await axios.post<RhythiaUserScoresResponse>(
-			`${config.rhythiaApiBaseUrl}/api/getUserScores`,
-			{
-				session: "",
-				id: profileId,
-				limit: 1,
-			},
-		);
-
-		const topPlay = scoresRes.data.top?.[0];
 
 		return {
 			username: user.username ?? `user${user.id}`,
-			displayName: user.username ?? `user${user.id}`,
 			avatarUrl: user.avatar_url ?? "",
 
 			user_title: userTitle,
 			user_title_image: badgeUrl,
 			user_rhythm_points: rpValue,
-			user_next_title_points_needed: nextTitlePointsNeeded,
 			user_rank: user.position ? `#${user.position}` : "Unranked",
-
-			user_country_rank: user.country_position ?? 0,
+			user_country_rank: user.country_position
+				? `#${user.country_position}`
+				: "Unranked",
 			user_play_count: user.play_count ?? 0,
 			user_squares_hit: user.squares_hit ?? 0,
-
-			user_status: user.is_online
-				? "Online"
-				: user.activity_status === "active"
-					? "Active"
-					: "Offline",
 
 			user_join_date: new Date(user.created_at).toLocaleDateString("en-GB", {
 				day: "2-digit",
 				month: "2-digit",
 				year: "numeric",
 			}),
-
-			user_top_play: topPlay
-				? `${topPlay.beatmapTitle ?? "Unknown map"} - ${topPlay.awarded_sp ?? 0} RP`
-				: "No top play",
 		};
 	} catch (error) {
 		const details =

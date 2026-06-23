@@ -1,16 +1,9 @@
 {
-	"name": "rhythia-stats",
+	"name": "rhythia-stats-grid",
 	"main": "src/index.ts",
-	"compatibility_date": "2026-06-18",
+	"compatibility_date": "2026-06-23",
 	"triggers": {
 		"crons": ["*/15 * * * *"]
-	},
-	"vars": {
-		"DISCORD_TOKEN": "",
-		"DISCORD_APP_ID": "",
-		"DISCORD_USER_ID": "",
-		"RHYTHIA_PROFILE_ID": "",
-		"RHYTHIA_API_BASE_URL": "https://production.rhythia.com"
 	},
 	"observability": {
 		"enabled": false,
