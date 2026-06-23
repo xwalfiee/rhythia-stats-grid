@@ -2,9 +2,6 @@
 	"name": "rhythia-stats-grid",
 	"main": "src/index.ts",
 	"compatibility_date": "2026-06-23",
-	"triggers": {
-		"crons": ["*/15 * * * *"]
-	},
 	"observability": {
 		"enabled": false,
 		"head_sampling_rate": 1,
